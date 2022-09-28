@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const cors = require('cors');
 
 const getBarang = require('./routes/barang/get_barang');
+const getJenis = require('./routes/jenis/get_jenis');
 
 app.use(helmet());
 app.use(xss());
@@ -29,6 +30,7 @@ const allowlist = [
   };
 
 app.use('/', cors(corsOptionsDelegate), getBarang);
+app.use('/', cors(corsOptionsDelegate), getJenis);
 
 app.use("*", (req, res) => {
   res.send("Sukses");
