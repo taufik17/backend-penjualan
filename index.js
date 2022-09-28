@@ -10,6 +10,7 @@ const cors = require('cors');
 const getBarang = require('./routes/barang/get_barang');
 const crudBarang = require('./routes/barang/crud_barang');
 const getJenis = require('./routes/jenis/get_jenis');
+const crudJenis = require('./routes/jenis/crud_jenis');
 const getTransaksi = require('./routes/transaksi/get_transaksi');
 
 app.use(helmet());
@@ -34,6 +35,7 @@ const allowlist = [
 app.use('/', cors(corsOptionsDelegate), getBarang);
 app.use('/', cors(corsOptionsDelegate), crudBarang);
 app.use('/', cors(corsOptionsDelegate), getJenis);
+app.use('/', cors(corsOptionsDelegate), crudJenis);
 app.use('/', cors(corsOptionsDelegate), getTransaksi);
 
 app.use("*", (req, res) => {

@@ -45,7 +45,7 @@ const getEditBarang = async (req, res) => {
     if (editBarang) {
       res.send("Edit Successfully");
     } else {
-      res.status(400).send("Failed delete");
+      res.status(400).send("Failed edit");
     }
   } catch (error) {
     res.status(400).send("ada yang error");
