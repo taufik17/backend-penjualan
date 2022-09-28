@@ -14,6 +14,22 @@ const allBarang = () =>
     );
   });
 
+const getByID = (id) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      "SELECT * FROM barang WHERE id_barang = $1",
+      [id],
+      (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  });
+
 module.exports = {
   allBarang,
+  getByID,
 };
