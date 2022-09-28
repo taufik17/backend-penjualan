@@ -1,0 +1,4 @@
+# ini komentar
+.git
+/node_modules
+.env
