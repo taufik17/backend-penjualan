@@ -9,6 +9,7 @@ const cors = require('cors');
 
 const getBarang = require('./routes/barang/get_barang');
 const getJenis = require('./routes/jenis/get_jenis');
+const getTransaksi = require('./routes/transaksi/get_transaksi');
 
 app.use(helmet());
 app.use(xss());
@@ -31,6 +32,7 @@ const allowlist = [
 
 app.use('/', cors(corsOptionsDelegate), getBarang);
 app.use('/', cors(corsOptionsDelegate), getJenis);
+app.use('/', cors(corsOptionsDelegate), getTransaksi);
 
 app.use("*", (req, res) => {
   res.send("Sukses");
