@@ -9,6 +9,17 @@ const getAllBarang = async (req, res) => {
   }
 };
 
+const getBarangById = async (req, res) => {
+  try {
+    const { id_barang } = req.body;
+    const getData = await model.getByID(id_barang);
+    res.send({ data: getData.rows, jumlahData: getData.rowCount });
+  } catch (error) {
+    res.status(400).send("ada yang error");
+  }
+};
+
 module.exports = {
   getAllBarang,
+  getBarangById,
 };
