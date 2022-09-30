@@ -19,7 +19,18 @@ const getBarangById = async (req, res) => {
   }
 };
 
+const getSearchBarang = async (req, res) => {
+  try {
+    const { keyword } = req.body;
+    const getData = await model.searchBarang(keyword);
+    res.send({ data: getData.rows, jumlahData: getData.rowCount });
+  } catch (error) {
+    res.status(400).send("ada yang error");
+  }
+};
+
 module.exports = {
   getAllBarang,
   getBarangById,
+  getSearchBarang,
 };

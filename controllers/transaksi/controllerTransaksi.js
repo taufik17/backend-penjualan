@@ -19,6 +19,31 @@ const getAddTransaksi = async (req, res) => {
   }
 };
 
+const getTambahTransaksi = async (req, res) => {
+  try {
+    const { data } = req.body;
+    const dataTransaksi = JSON.parse(data);
+
+    const asyncRes = await Promise.all(
+      dataTransaksi.map(async (x) => {
+        await modelTransaksi.tambahTransaksi(
+          x.id_barang,
+          x.jumlah,
+          x.tgl_transaksi,
+        );
+      })
+    );
+
+    if (asyncRes) {
+      res.send("Transaksi Successfully");
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("ada yang error");
+  }
+};
+
 module.exports = {
   getAddTransaksi,
+  getTambahTransaksi,
 };

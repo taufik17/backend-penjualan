@@ -31,7 +31,26 @@ const getByID = (id) =>
     );
   });
 
+  const searchBarang = (keyword) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      `SELECT * FROM barang 
+      INNER JOIN jenis ON jenis.id_jenis = barang.jenis_barang
+      WHERE LOWER(nama_barang) LIKE LOWER($1)
+      ORDER BY barang.nama_barang ASC`,
+      [`%${keyword}%`],
+      (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  });
+
 module.exports = {
   allBarang,
   getByID,
+  searchBarang,
 };

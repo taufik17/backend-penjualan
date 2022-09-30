@@ -15,11 +15,41 @@ const addTransaksi = (props) =>
     );
   });
 
+  const tambahTransaksi = (id, jumlah, tanggal) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      "INSERT INTO transaksi (tgl_transaksi, jumlah, id_barang) VALUES ($1, $2, $3) RETURNING *",
+      [tanggal, jumlah, id],
+      (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  });
+
 const decStok = (props) =>
   new Promise((resolve, reject) => {
     db.query(
       "UPDATE barang SET stok = (stok - $1) WHERE id_barang = $2",
       [props.jumlah, props.id_barang],
+      (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(results);
+        }
+      }
+    );
+  });
+
+  const decStokTransaksi = (id, jumlah) =>
+  new Promise((resolve, reject) => {
+    db.query(
+      "UPDATE barang SET stok = (stok - $1) WHERE id_barang = $2",
+      [jumlah, id],
       (error, results) => {
         if (error) {
           reject(error);
@@ -49,4 +79,6 @@ module.exports = {
   addTransaksi,
   decStok,
   cekStok,
+  decStokTransaksi,
+  tambahTransaksi,
 };
