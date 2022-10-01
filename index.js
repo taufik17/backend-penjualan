@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-require('dotenv').config();
 const port = process.env.PORT || process.env.EXPRESS_PORT;
 const helmet = require('helmet');
 const xss = require('xss-clean');
@@ -22,7 +22,6 @@ app.use(bodyParser.json());
 
 const allowlist = [
     'http://localhost:3000',
-    'http://localhost:3004',
     'https://frontend-penjualan.vercel.app'
   ];
   const corsOptionsDelegate = function (req, callback) {
