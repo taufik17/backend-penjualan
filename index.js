@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 
 const allowlist = [
     'http://localhost:3000',
+    'http://localhost:3004',
     'https://frontend-penjualan.vercel.app'
   ];
   const corsOptionsDelegate = function (req, callback) {
